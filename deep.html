@@ -1,0 +1,220 @@
+<style>
+    /* Add these new styles to your existing CSS */
+    
+    /* Content Section Background */
+    .tab-content {
+        background: rgba(18, 18, 18, 0.95);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-top: 1rem;
+        border: 1px solid rgba(7, 233, 241, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Image Optimization */
+    .media-card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .card-media {
+        position: relative;
+        filter: brightness(0.9);
+        transition: filter 0.3s ease;
+    }
+    
+    .media-card:hover .card-media {
+        filter: brightness(1);
+    }
+    
+    /* Video Card Overlay */
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .media-card:hover .video-overlay {
+        opacity: 1;
+    }
+    
+    /* Download Cards Grid */
+    #downloads {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .download-card {
+        background: rgba(15, 15, 15, 0.9);
+        padding: 1.5rem;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+    }
+    
+    .download-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Responsive Iframe */
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+    
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+        .custom-container {
+            padding: 0 1rem;
+        }
+    
+        .tab-nav {
+            gap: 1rem;
+            padding: 1rem 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    
+        .tab-btn {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+    
+        .tab-content {
+            padding: 1rem;
+        }
+    
+        #downloads {
+            grid-template-columns: 1fr;
+        }
+    
+        .sponsor {
+            flex-direction: column;
+            text-align: center;
+            padding: 1rem !important;
+        }
+    
+        .sponsor-text {
+            margin-bottom: 1rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .card-title {
+            font-size: 1rem;
+        }
+    
+        .card-meta {
+            font-size: 0.8rem;
+        }
+    
+        .download-btn {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    }
+    
+    /* Sponsor Section */
+    .sponsor {
+        background: rgba(15, 15, 15, 0.9);
+        border-radius: 12px;
+        margin-top: 3rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(7, 233, 241, 0.1);
+    }
+    
+    .sponsor-text h3 {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+    
+    .sponsor-logo img {
+        max-width: 200px;
+        height: auto;
+    }
+    </style>
+    
+    <!-- Updated HTML Structure -->
+    <div class="custom-container mt-5">
+        <div class="custom-inner">
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-target="downloads">Download</button>
+                <button class="tab-btn" data-target="reels">Reels</button>
+                <button class="tab-btn" data-target="videos">Videos</button>
+                <div class="tab-indicator"></div>
+            </nav>
+    
+            <!-- Downloads Content -->
+            <div class="tab-content active" id="downloads">
+                <!-- Download cards remain the same structure -->
+            </div>
+    
+            <!-- Reels Content -->
+            <div class="tab-content" id="reels">
+                <div class="media-card">
+                    <video class="card-media" controls>
+                        <source src="reel1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <i class="play-icon"></i> <!-- Add your play icon here -->
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Studio Session #1</h3>
+                        <p class="card-meta">15K views · 2 days ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Videos Content -->
+            <div class="tab-content" id="videos">
+                <div class="media-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/BMTOAs99fmw?si=SGxMbV0Flc7ZCyDB" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Official Music Video (ofunmwegbe)</h3>
+                        <p class="card-meta">504 views · 2 weeks ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Sponsor Section -->
+            <div class="sponsor p-3">
+                <div class="row">
+                    <div class="col-md-6 sponsor-text">
+                        <div class="sponsor-text-inner">
+                            <h3>Proudly sponsored by</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6 sponsor-logo">
+                        <div class="sponsor-l-inner">
+                            <!-- Add sponsor logo here -->
+                            <!-- <img src="sponsor-logo.png" alt="Sponsor"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
