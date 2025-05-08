@@ -393,118 +393,67 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// // Form Validation
-// document.addEventListener('DOMContentLoaded', () => {
-//   const form = document.querySelector('.needs-validation');
-//   const successModal = document.querySelector('.validation-success');
-
-//   form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-
-//     form.classList.add('was-validated');
-
-//     if (form.checkValidity()) {
-//       // If valid, show success modal
-//       successModal.classList.add('active');
-      
-//       // Reset form after 3 seconds
-//       setTimeout(() => {
-//         form.classList.remove('was-validated');
-//         form.reset();
-//         successModal.classList.remove('active');
-//       }, 3000);
-//     }
-//   }, false);
-
-//   // Real-time validation
-//   form.querySelectorAll('.form-control').forEach(input => {
-//     input.addEventListener('input', () => {
-//       if (input.validity.valid) {
-//         input.classList.remove('invalid');
-//         input.nextElementSibling.style.display = 'none';
-//       } else {
-//         input.classList.add('invalid');
-//         input.nextElementSibling.style.display = 'block';
-//       }
-//     });
-//   });
-// });
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.needs-validation');
-  const successModal = document.querySelector('.validation-success');
-  const formAction = 'https://formspree.io/f/xqaqqrqv'; // Replace with your Formspree ID
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    form.classList.add('was-validated');
-
-    if (form.checkValidity()) {
-      try {
-        // Add loading state
+  // Universal Form Validation
+  document.querySelectorAll('form.needs-validation').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Sending...';
+        const successId = form.dataset.successId;
+        const submitText = submitBtn.querySelector('.submit-text');
+        const spinner = submitBtn.querySelector('.spinner');
 
-        // Send to Formspree
-        const response = await fetch(formAction, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: {
-            'Accept': 'application/json'
-          }
+        // Validate form
+        let isValid = true;
+        form.querySelectorAll('[data-required]').forEach(field => {
+            const value = field.value.trim();
+            const type = field.dataset.type;
+            const minLength = field.dataset.minLength;
+
+            field.classList.remove('is-invalid', 'is-valid');
+            
+            if (!value) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else if (type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else if (type === 'text' && minLength && value.length < minLength) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                field.classList.add('is-valid');
+            }
         });
 
-        if (response.ok) {
-          // Show success message
-          successModal.classList.add('active');
-          form.reset();
-          form.classList.remove('was-validated');
-          
-          // Hide success modal after 3 seconds
-          setTimeout(() => {
-            successModal.classList.remove('active');
-          }, 3000);
-        } else {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Submission failed');
+        if (!isValid) return;
+
+        // Submit form
+        try {
+            submitText.textContent = 'Sending...';
+            spinner.classList.remove('d-none');
+            submitBtn.disabled = true;
+
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                const successModal = document.getElementById(successId);
+                successModal.classList.add('active');
+                setTimeout(() => successModal.classList.remove('active'), 3000);
+            }
+        } catch (error) {
+            alert('Error submitting form. Please try again.');
+        } finally {
+            submitText.textContent = submitBtn.dataset.originalText;
+            spinner.classList.add('d-none');
+            submitBtn.disabled = false;
         }
-      } catch (error) {
-        // Show error message
-        const errorElement = document.createElement('div');
-        errorElement.className = 'alert alert-danger mt-3';
-        errorElement.textContent = `Error: ${error.message}`;
-        form.parentNode.insertBefore(errorElement, form.nextSibling);
-        
-        // Remove error after 5 seconds
-        setTimeout(() => {
-          errorElement.remove();
-        }, 5000);
-      } finally {
-        // Reset button state
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Submit';
-      }
-    }
-  });
-
-  // Real-time validation (keep existing)
-  form.querySelectorAll('.form-control').forEach(input => {
-    input.addEventListener('input', () => {
-      if (input.validity.valid) {
-        input.classList.remove('invalid');
-        input.nextElementSibling.style.display = 'none';
-      } else {
-        input.classList.add('invalid');
-        input.nextElementSibling.style.display = 'block';
-      }
     });
-  });
 });
-
 
 // testimonials
 class TestimonialSlider {

@@ -25,18 +25,32 @@
    <!-- font awesome -->
    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.css"/>
    <!-- font awesome -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <!-- loader -->
+<!-- loader -->
 <div class="load-body">
-    <div class="gif-preloader">
-      <video disablePictureInPicture controlsList="nodownload" disableRemotePlayback loop autoplay muted src="./video/gif-preloader.mp4 "></video>
-     
-    </div>
-    <div class="load-bar"><span></span></div>
- </div>
+  <div class="gif-preloader">
+    <video 
+      class="preloader-video"
+      disablePictureInPicture 
+      controlsList="nodownload" 
+      disableRemotePlayback 
+      loop 
+      autoplay 
+      muted 
+      playsinline
+      style="width: 100%; height: auto;"
+      src="./video/gif-preloader.mp4">
+    </video>
+  </div>
+  <div class="load-bar"><span></span></div>
+</div>
 
   <!-- loader end -->
    <!-- navbar -->
@@ -168,10 +182,6 @@
                 
               </section>
                    <!-- sticky player -->
-                   <div class="prev-image-small">
-                    
-                   </div>
-                 
                  <div class="player-bar  animation-2" id="music-player">
                   <div class="prev-image">
                   </div>
@@ -523,20 +533,18 @@
                                 </nav>
                                 <!--  -->
                               <div class="tab-content  active"  id="downloads" >
-                                <div class="download-card " id="card-1">
-                                  <div class="d-info">
+                               <!-- Download Card 1 with Validation -->
+                               <div class="download-card" id="card-1">
+                                <div class="d-info">
                                     <h5>Download ISE by Kelly Imasuen</h5>
-                                  <p class="card-meta">"Ise" - Amen </p>
-                                  </div> 
-                                
-                            
-                                  <div class="download-options">
-                                    <a href="music/ise.mp3" download class="download-btn">
+                                    <p class="card-meta">"Ise" - Amen </p>
+                                </div>
+                                <div class="download-options">
+                                    <a href="music/ise.mp3" class="download-btn" download>
                                         Download MP3
                                     </a>
-                                   
                                 </div>
-                                </div>
+                            </div>
                                 <div class="download-card"  id="card-1">
                                   <div class="d-info">
                                     <h5>Download Osawese by Kelly Imasuen</h5>
@@ -617,11 +625,24 @@
       
                                         <div class="soon-cta">
                                           <p class="cta-text">Be the first to know when we drop!</p>
-                                          <form class="notify-form"   action="https://formspree.io/f/xqaqqrqv"
-                                          method="POST">
-                                            <input type="email" placeholder="Enter your email" required>
-                                            <button type="submit" class="notify-btn">Notify Me</button>
-                                          </form>
+                                         <!-- Update your existing form in the Coming Soon section -->
+                                         <form class="notify-form needs-validation" 
+                                         data-success-id="coming-soon-success" 
+                                         action="https://formspree.io/f/xqaqqrqv" 
+                                         method="POST">
+                                       <input type="email" 
+                                              name="email"
+                                              class="form-control"
+                                              data-required="true"
+                                              data-type="email"
+                                              placeholder="Enter your email"
+                                              required>
+                                       <div class="invalid-feedback">Please enter a valid email address</div>
+                                       <button type="submit" class="notify-btn">
+                                           <span class="submit-text">Notify Me</span>
+                                           <span class="spinner spinner-border spinner-border-sm d-none"></span>
+                                       </button>
+                                   </form>
                                         </div>
                                       </div>
                                     </div>
@@ -679,11 +700,25 @@
 
                                   <div class="soon-cta">
                                     <p class="cta-text">Be the first to know when we drop!</p>
-                                    <form class="notify-form"    action="https://formspree.io/f/xqaqqrqv"
-                                    method="POST">
-                                      <input type="email" placeholder="Enter your email" required>
-                                      <button type="submit" class="notify-btn">Notify Me</button>
-                                    </form>
+                                   <!-- Update your existing form in the Coming Soon section -->
+                                   <form class="notify-form needs-validation" 
+                                   data-success-id="coming-soon-success" 
+                                   action="https://formspree.io/f/xqaqqrqv" 
+                                   method="POST">
+                                 <input type="email" 
+                                        name="email"
+                                        class="form-control"
+                                        data-required="true"
+                                        data-type="email"
+                                        placeholder="Enter your email"
+                                        required>
+                                 <div class="invalid-feedback">Please enter a valid email address</div>
+                                 <button type="submit" class="notify-btn">
+                                     <span class="submit-text">Notify Me</span>
+                                     <span class="spinner spinner-border spinner-border-sm d-none"></span>
+                                 </button>
+                             </form>
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -718,7 +753,7 @@
                                          <div class="sponsor-content">
                                              <h3 class="display-6 mb-3">Proudly Sponsored By</h3>
                                              <p class="lead mb-4">SOULS FOR CHRIST KINGDOM OUTREACH MINISTRIES.</p>
-                                             <a href="https://www.facebook.com/people/Souls-for-Christ-kingdom-outreach/100094729953716/" class="cta-link">Visit Page <span>&rarr;</span></a>
+                                             <a href="https://www.facebook.com/people/Souls-for-Christ-kingdom-outreach/100094729953716/" class="cta-link">Visit Page</a>
                                          </div>
                                      </div>
                                      
@@ -793,12 +828,15 @@
                
                       <h2 class="mb-4 fw-bold">Book A Session</h2>
                       <form class="needs-validation"  novalidate  action="https://formspree.io/f/xqaqqrqv"
-                      method="POST">
+                      method="POST"  data-success-id="contact-success" >
                           <div class="row g-3">
                               <!-- Form Row 1 -->
                               <div class="col-md-6 mb-4">
                                   <label class="form-label small text-muted mb-1">FULL NAME</label>
-                                  <input type="text" class="form-control form-control-lg text-light" name="name" placeholder="John Doe" id="name" required minlength="3" pattern="[A-Za-z ]+">
+                                  <input 
+                                  type="text" class="form-control form-control-lg text-light" name="name" placeholder="Full Name" id="name" data-required="true"
+                                  data-type="text"
+                                  data-min-length="3" pattern="[A-Za-z ]+">
                                   <div class="invalid-feedback">Please enter a valid name (letters and spaces only)</div>
                               </div>
                               <div class="col-md-6  reserve">
@@ -820,7 +858,12 @@
                               <!-- Form Row 3 -->
                               <div class="col-12 mb-4">
                                   <label class="form-label small text-muted mb-1">EMAIL</label>
-                                  <input type="email" class="form-control form-control-lg text-light" name="_replyto" placeholder="hello@domainsite.com" required  id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                  <input type="email" class="form-control form-control-lg text-light"  type="email" 
+                                  name="email"
+                                  class="form-control"
+                                  data-required="true"
+                                  data-type="email"
+                                  placeholder="Email Address"  id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
                                   <div class="invalid-feedback">Please enter a valid email address</div>
                               </div>
   
@@ -843,25 +886,26 @@
                               <!-- Message Box -->
                               <div class="col-12">
                                   <label class="form-label small text-muted mb-1">MESSAGE</label>
-                                  <textarea class="form-control form-control-lg text-light" rows="4" name="message"  placeholder="Your Message"   required minlength="10"></textarea>
+                                  <textarea class="form-control form-control-lg text-light" rows="4" name="message"  placeholder="Your Message"    data-required="true"
+                                data-min-length="10"></textarea>
                                    <div class="invalid-feedback">Please enter at least 10 characters</div>
                               </div>
   
                               <!-- Submit Button -->
                               <div class="col-12 mt-4 btn-box">
-                                  <button type="submit" class="btn-primary w-100 py-3">
-                                      Submit
-                                      <span>&rarr;</span>
-                                  </button>
+                                <button type="submit" class="btn-primary w-100 py-3">
+                                  <span class="submit-text">Send Message</span>
+                                  <span class="spinner spinner-border spinner-border-sm d-none"></span>
+                              </button>
                               </div>
                           </div>
-                          <div class="validation-success">
+                          <!-- <div class="validation-success">
                             <div class="success-content">
                               <i class="fas fa-check-circle"></i>
                               <h3>Message Sent Successfully!</h3>
                               <p>We'll get back to you within 24 hours</p>
                             </div>
-                          </div>
+                          </div> -->
                       </form>
                                           <!-- Validation Success Modal -->
                    
@@ -921,11 +965,11 @@
                     <div class="testimonial-card">
                         
                         <div>
-                          <h5 class="mb-0">Threads by Ese</h5>
-                          <small class="text-primary">Fashion Designer</small>
+                          <h5 class="mb-0">Pastor Precious Ehiaghe</h5>
+                          <small class="text-primary">G.O Souls for christ kingdom outreach ministries</small>
                       </div>
                         <p class="testimonial-text">
-                            "Kelly Imasuen’s album is a divine journey that bridges heaven and heritage.
+                            "This album will bless your soul."
                         </p>
                     </div>
                 </div>
@@ -939,11 +983,11 @@
                     <div class="testimonial-card">
                         
                         <div>
-                          <h5 class="mb-0">Edex</h5>
-                          <small class="text-primary">Interior Designer</small>
+                          <h5 class="mb-0">IK</h5>
+                          <small class="text-primary">Seasoned Keyboardist</small>
                       </div>
                         <p class="testimonial-text">
-                          "From the first chord of Oyunua, I was transported into a space of raw, unfiltered praise. 
+                          "From the first chord of Oyunua, I was transported into a space of raw, unfiltered praise." 
                         </p>
                     </div>
                 </div>
@@ -958,7 +1002,7 @@
                         
                         <div>
                           <h5 class="mb-0">Ehigie Nelson</h5>
-                          <small class="text-primary">Instrumentalist</small>
+                          <small class="text-primary">Instrumentalist & Sound Engineer</small>
                       </div>
                         <p class="testimonial-text">
                           "The way he marries Benin-language  with universal gospel truths makes this album a cultural treasure."
@@ -977,8 +1021,8 @@
                     <div class="testimonial-card">
                         
                         <div>
-                          <h5 class="mb-0">Min. David Ogban</h5>
-                          <small class="text-primary">Gospel Minister</small>
+                          <h5 class="mb-0">Alpha-Krane Pro solution</h5>
+                          <small class="text-primary">Instrumentalist & Fashion designer</small>
                       </div>
                         <p class="testimonial-text">
                           "Tracks like Osawese blend lyrics that pierce the heart, creating a sound that’s both fresh and timeless."
@@ -995,7 +1039,7 @@
                    <!-- Card 1 -->
                    <div class="col-lg-3 col-md-6">
                     <div class="user-meta mb-0">
-                      <div class="user-avatar-placeholder" id="card-1-img"></div>
+                      <div class="user-avatar-placeholder" id="card-5-img"></div>
                      
                   </div>
                       <div class="testimonial-card">
@@ -1013,41 +1057,42 @@
                   <!-- Card 2 -->
                   <div class="col-lg-3 col-md-6">
                     <div class="user-meta mb-0">
-                      <div class="user-avatar-placeholder" id="card-2-img"></div>
+                      <div class="user-avatar-placeholder" id="card-6-img"></div>
                      
                   </div>
-                      <div class="testimonial-card">
-                          
-                          <div class="ms-0">
-                            <h5 class="mb-0">Edex</h5>
-                            <small class="text-primary">Interior Designer</small>
-                        </div>
-                          <p class="testimonial-text">
-                            "From the first chord of Oyunua, I was transported into a space of raw, unfiltered praise. 
-                          </p>
-                      </div>
+                  <div class="testimonial-card">
+                        
+                    <div>
+                      <h5 class="mb-0">IK</h5>
+                      <small class="text-primary">Seasoned Keyboardist</small>
+                  </div>
+                    <p class="testimonial-text">
+                      "From the first chord of Oyunua, I was transported into a space of raw, unfiltered praise." 
+                    </p>
+                </div>
+                     
                   </div>
 
                   <!-- Card 3 -->
                   <div class="col-lg-3 col-md-6">
                     <div class="user-meta mb-0">
-                      <div class="user-avatar-placeholder" id="card-3-img"></div>
+                      <div class="user-avatar-placeholder" id="card-7-img"></div>
                      
                   </div>
                       <div class="testimonial-card">
                           
                           <div class="ms-0">
-                            <h5 class="mb-0">Ehigie Nelson</h5>
-                            <small class="text-primary">Instrumentalist & Sound Engineer</small>
+                            <h5 class="mb-0">Min. David Ogban</h5>
+                            <small class="text-primary">Gospel Minister</small>
                         </div>
                           <p class="testimonial-text">
-                            "The way he marries Benin-language verses with universal gospel truths makes this album a cultural treasure and a spiritual weapon."
+                            "Osawese reminded me of how God has been faithful; it left me in worship."
                           </p>
                       </div>
                   </div>
 
                   <!-- Card 4 -->
-                  <div class="col-lg-3 col-md-6">
+                  <!-- <div class="col-lg-3 col-md-6">
                     <div class="user-meta mb-0">
                       <div class="user-avatar-placeholder" id="card-4-img"></div>
                      
@@ -1062,7 +1107,7 @@
                             "Tracks like Osawese blend Afrocentric instrumentation with lyrics that pierce the heart, creating a sound that’s both fresh and timeless."
                           </p>
                       </div>
-                  </div>
+                  </div> -->
               </div>
           </div>
           
@@ -1148,13 +1193,22 @@
 
           <div class="footer-col">
               <h4 class="footer-title">Newsletter</h4>
-              <form class="newsletter-form"  action="https://formspree.io/f/xqaqqrqv"
-  method="POST">
-                  <input type="email" placeholder="Enter your email" required>
-                  <button type="submit">
-                      <i class="fas fa-paper-plane"></i>
-                  </button>
-              </form>
+              <form class="newsletter-form needs-validation" 
+              data-success-id="newsletter-success" 
+              action="https://formspree.io/f/xqaqqrqv" 
+              method="POST">
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   data-required="true"
+                   data-type="email"
+                   placeholder="Enter your email">
+            <div class="invalid-feedback">Please enter a valid email</div>
+            <button type="submit" class="btn-primary">
+                <span class="submit-text"><i class="fas fa-paper-plane"></i></span>
+                <span class="spinner spinner-border spinner-border-sm d-none"></span>
+            </button>
+        </form>
               <p class="newsletter-text">Get exclusive updates and special offers</p>
           </div>
       </div>
@@ -1172,6 +1226,30 @@
               <div class="sticky-preview" id="sticky-preview">
                 <img src="" alt="Now Playing" class="sticky-track-image">
               </div>
+                            <!-- Success Modals -->
+                  <div class="validation-success" id="contact-success">
+                    <div class="success-content">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Message Sent!</h3>
+                        <p>We'll respond within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="validation-success" id="coming-soon-success">
+                    <div class="success-content">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>You're Registered!</h3>
+                        <p>We'll notify you when we launch</p>
+                    </div>
+                </div>
+
+                <div class="validation-success" id="newsletter-success">
+                    <div class="success-content">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Subscribed!</h3>
+                        <p>Thank you for joining our newsletter</p>
+                    </div>
+                </div>
                <!-- Modal Structure -->
                <div class="video-modal">
                 <div class="modal-backdrop"></div>
