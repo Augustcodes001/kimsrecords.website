@@ -167,8 +167,6 @@ a{
   color: #07cfd6 ;
   font-size: 2em;
   font-weight: 600;
-  
-  font-family: cursive;
 }
 .navbar-logo span{
     color: rgb(255, 255, 255);
@@ -393,7 +391,7 @@ border: none;
   } 
   @media (max-width: 540px) {
     .card-img-overlay {
-      padding-top: 30vh;
+      padding-top: 50vh;
     }
   
   }
